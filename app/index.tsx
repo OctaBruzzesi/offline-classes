@@ -31,7 +31,10 @@ export default function HomeScreen() {
 
   const renderClassItem = ({ item }: { item: Class }) => (
     <Link
-      href={{ pathname: 'class-details', params: { name: item.title } }}
+      href={{
+        pathname: 'class-details',
+        params: { name: item.title, classData: JSON.stringify(item) },
+      }}
       asChild
     >
       <TouchableOpacity style={styles.classItem}>

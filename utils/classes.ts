@@ -26,7 +26,7 @@ const mockClasses: Class[] = [
     video: {
       id: 101,
       title: 'Setting up your environment',
-      url: 'https://example.com/video1',
+      url: 'https://videos.pexels.com/video-files/26811242/12011463_1920_1080_50fps.mp4',
     },
     questions: [
       {
@@ -55,7 +55,44 @@ const mockClasses: Class[] = [
     video: {
       id: 103,
       title: 'Understanding React hooks',
-      url: 'https://example.com/video3',
+      url: 'https://videos.pexels.com/video-files/3321011/3321011-hd_1920_1080_30fps.mp4',
+    },
+    questions: [
+      {
+        id: 203,
+        text: 'Which hook is used to add state to functional components?',
+        answers: [
+          { id: 307, text: 'useEffect', isCorrect: false },
+          { id: 308, text: 'useState', isCorrect: true },
+          { id: 309, text: 'useContext', isCorrect: false },
+        ],
+      },
+      {
+        id: 204,
+        text: 'What is the main purpose of Redux?',
+        answers: [
+          { id: 310, text: 'To manage component lifecycle', isCorrect: false },
+          {
+            id: 311,
+            text: 'To handle routing in React Native',
+            isCorrect: false,
+          },
+          {
+            id: 312,
+            text: 'To manage global state in an application',
+            isCorrect: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: 'Colors',
+    video: {
+      id: 103,
+      title: 'An essay about colors',
+      url: 'https://videos.pexels.com/video-files/10968936/10968936-uhd_2560_1440_30fps.mp4',
     },
     questions: [
       {
