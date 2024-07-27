@@ -33,7 +33,10 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="index"
+          options={{ headerShown: false, title: 'Classes' }}
+        />
         <Stack.Screen name="class-details" />
         <Stack.Screen name="+not-found" />
       </Stack>
