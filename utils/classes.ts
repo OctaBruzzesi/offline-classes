@@ -1,3 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 type Video = {
   id: number
   title: string
@@ -131,4 +133,31 @@ export const fetchClasses = () => {
       resolve(mockClasses)
     }, 1000)
   })
+}
+
+export const getDownloadedClasses = async () => {
+  try {
+    const keys = await AsyncStorage.getAllKeys()
+
+    const classKeys = keys.filter((key) => key.startsWith('class'))
+    const classesData = await AsyncStorage.multiGet(classKeys)
+    const downloadedClasses = classesData.reduce<Class[]>((prevValue, data) => {
+      const value = data[1]
+
+      // If data is missing, ommit this item
+      if (!value) {
+        return prevValue
+      }
+
+      const parsedData = JSON.parse(value)
+
+      return [...prevValue, parsedData]
+    }, [])
+
+    return downloadedClasses
+  } catch (e) {
+    console.error('Error retrieving local classes', e)
+
+    return []
+  }
 }

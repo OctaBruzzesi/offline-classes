@@ -11,6 +11,7 @@ import { useLocalSearchParams } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ThemedText } from '@/components/ThemedText'
 import { Class } from '@/utils/classes'
+import { ClassDownloader } from '@/components/ClassDownloader'
 
 const ClassDetails = () => {
   const [selectedAnswers, setSelectedAnswers] = useState<
@@ -77,6 +78,8 @@ const ClassDetails = () => {
           useNativeControls
           style={styles.video}
         />
+
+        <ClassDownloader classData={classData} />
 
         <Text style={styles.videoTitle}>{classData.video.title}</Text>
 

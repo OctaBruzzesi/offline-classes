@@ -4,7 +4,7 @@ import { Link } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { ThemedText } from '@/components/ThemedText'
-import { Class, fetchClasses } from '@/utils/classes'
+import { Class, fetchClasses, getDownloadedClasses } from '@/utils/classes'
 
 export default function HomeScreen() {
   const [classes, setClasses] = useState<Class[]>([])
@@ -14,6 +14,7 @@ export default function HomeScreen() {
     const getClasses = async () => {
       try {
         const classes = await fetchClasses()
+        // const classes = await getDownloadedClasses()
         setClasses(classes)
         setLoading(false)
       } catch (e) {
