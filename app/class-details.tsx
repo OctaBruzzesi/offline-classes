@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from 'react-native'
 import { ResizeMode, Video } from 'expo-av'
-import { useLocalSearchParams } from 'expo-router'
+import { Stack, useLocalSearchParams } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { ThemedText } from '@/components/ThemedText'
 import { Class } from '@/utils/classes'
@@ -67,11 +67,9 @@ const ClassDetails = () => {
 
   return (
     <ScrollView style={styles.container}>
+      <Stack.Screen options={{ title: classData.title }} />
       <SafeAreaView edges={{ top: 'off', bottom: 'maximum' }}>
-        <ThemedView style={styles.titleContainer}>
-          <Text style={styles.title}>{classData.title}</Text>
-          <Text>{classData.isDownloaded ? 'Offline' : ''}</Text>
-        </ThemedView>
+        <ClassDownloader classData={classData} />
 
         <Video
           source={{ uri: classData.video.url }}
@@ -82,9 +80,6 @@ const ClassDetails = () => {
           useNativeControls
           style={styles.video}
         />
-
-        <ClassDownloader classData={classData} />
-
         <Text style={styles.videoTitle}>{classData.video.title}</Text>
 
         {classData.questions.map(renderQuestion)}
@@ -117,6 +112,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: '#EAF6FE',
   },
   titleContainer: {
     backgroundColor: 'transparent',
@@ -131,20 +127,32 @@ const styles = StyleSheet.create({
   video: {
     width: '100%',
     height: 200,
-    marginBottom: 16,
+    marginBottom: 4,
   },
   videoTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 12,
     marginBottom: 16,
   },
   questionContainer: {
+    backgroundColor: 'white',
+    paddingRight: 8,
+    paddingLeft: 8,
+    paddingBottom: 20,
+    paddingTop: 34,
+    borderRadius: 15,
+    shadowColor: 'rgb(96, 125, 151)',
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
     marginBottom: 24,
   },
   questionText: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 25,
   },
   answerButton: {
     backgroundColor: '#f0f0f0',
@@ -165,7 +173,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   submitButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#102D47',
     padding: 16,
     borderRadius: 8,
     alignItems: 'center',

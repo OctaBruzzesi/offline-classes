@@ -29,13 +29,13 @@ const mockClasses: Class[] = [
     id: 1,
     title: 'Introduction to React Native',
     video: {
-      id: 101,
+      id: 111,
       title: 'Setting up your environment',
       url: 'https://videos.pexels.com/video-files/26811242/12011463_1920_1080_50fps.mp4',
     },
     questions: [
       {
-        id: 201,
+        id: 121,
         text: 'What is the command to create a new React Native project?',
         answers: [
           { id: 301, text: 'npx react-native init MyApp', isCorrect: true },
@@ -60,7 +60,7 @@ const mockClasses: Class[] = [
     video: {
       id: 103,
       title: 'Understanding React hooks',
-      url: 'https://videos.pexels.com/video-files/3321011/3321011-hd_1920_1080_30fps.mp4',
+      url: 'https://videos.pexels.com/video-files/19636643/19636643-uhd_2560_1440_30fps.mp4',
     },
     questions: [
       {
@@ -97,33 +97,37 @@ const mockClasses: Class[] = [
     video: {
       id: 103,
       title: 'An essay about colors',
-      url: 'https://videos.pexels.com/video-files/10968936/10968936-uhd_2560_1440_30fps.mp4',
+      url: 'https://videos.pexels.com/video-files/26547629/11958122_1920_1080_24fps.mp4',
     },
     questions: [
       {
-        id: 203,
-        text: 'Which hook is used to add state to functional components?',
+        id: 1,
+        text: 'Which of the following is a primary color?',
         answers: [
-          { id: 307, text: 'useEffect', isCorrect: false },
-          { id: 308, text: 'useState', isCorrect: true },
-          { id: 309, text: 'useContext', isCorrect: false },
+          { id: 313, text: 'Green', isCorrect: false },
+          { id: 314, text: 'Purple', isCorrect: false },
+          { id: 315, text: 'Blue', isCorrect: true },
+          { id: 316, text: 'Orange', isCorrect: false },
         ],
       },
       {
-        id: 204,
-        text: 'What is the main purpose of Redux?',
+        id: 2,
+        text: 'What color is the opposite of red?',
         answers: [
-          { id: 310, text: 'To manage component lifecycle', isCorrect: false },
-          {
-            id: 311,
-            text: 'To handle routing in React Native',
-            isCorrect: false,
-          },
-          {
-            id: 312,
-            text: 'To manage global state in an application',
-            isCorrect: true,
-          },
+          { id: 317, text: 'Red', isCorrect: false },
+          { id: 318, text: 'Green', isCorrect: true },
+          { id: 319, text: 'Purple', isCorrect: false },
+          { id: 320, text: 'Brown', isCorrect: false },
+        ],
+      },
+      {
+        id: 3,
+        text: 'Which color is traditionally associated with royalty?',
+        answers: [
+          { id: 321, text: 'Green', isCorrect: false },
+          { id: 322, text: 'Red', isCorrect: false },
+          { id: 323, text: 'Blue', isCorrect: false },
+          { id: 324, text: 'Purple', isCorrect: true },
         ],
       },
     ],

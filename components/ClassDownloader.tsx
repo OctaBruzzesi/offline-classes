@@ -13,17 +13,19 @@ export const ClassDownloader = ({ classData }: ClassDownloaderProps) => {
   const [downloadProgress, setDownloadProgress] = useState(0)
 
   useEffect(() => {
-    checkIfDownloaded()
-  }, [])
-
-  const checkIfDownloaded = async () => {
-    try {
-      const downloadedData = await AsyncStorage.getItem(`class_${classData.id}`)
-      setIsDownloaded(!!downloadedData)
-    } catch (error) {
-      console.error('Error checking downloaded status:', error)
+    const validateIfDownloaded = async () => {
+      try {
+        const downloadedData = await AsyncStorage.getItem(
+          `class_${classData.id}`
+        )
+        setIsDownloaded(!!downloadedData)
+      } catch (error) {
+        console.error('Error checking downloaded status:', error)
+      }
     }
-  }
+
+    validateIfDownloaded()
+  }, [])
 
   const downloadClass = async () => {
     try {
@@ -67,7 +69,6 @@ export const ClassDownloader = ({ classData }: ClassDownloaderProps) => {
       )
 
       setIsDownloaded(true)
-      Alert.alert('Success', 'Class downloaded successfully!')
     } catch (error) {
       console.error('Error downloading class:', error)
       Alert.alert('Error', 'Failed to download class. Please try again.')
@@ -81,18 +82,13 @@ export const ClassDownloader = ({ classData }: ClassDownloaderProps) => {
 
       // Delete video file
       const videoFileName = `video_${classData.video.id}.mp4`
-      const videoFileUri = FileSystem.documentDirectory + videoFileName
+      const videoFileUri = `${FileSystem.documentDirectory}${videoFileName}`
       await FileSystem.deleteAsync(videoFileUri)
 
       setIsDownloaded(false)
       setDownloadProgress(0)
-      Alert.alert('Success', 'Downloaded class deleted successfully!')
     } catch (error) {
       console.error('Error deleting downloaded class:', error)
-      Alert.alert(
-        'Error',
-        'Failed to delete downloaded class. Please try again.'
-      )
     }
   }
 
@@ -106,7 +102,11 @@ export const ClassDownloader = ({ classData }: ClassDownloaderProps) => {
       ) : (
         <View>
           <Button title="Download for Offline Use" onPress={downloadClass} />
-          <Text>Download Progress: {(downloadProgress * 100).toFixed(2)}%</Text>
+          {downloadProgress > 0 ? (
+            <Text>
+              Download Progress: {(downloadProgress * 100).toFixed(2)}%
+            </Text>
+          ) : null}
         </View>
       )}
     </View>
