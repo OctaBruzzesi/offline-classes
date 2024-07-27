@@ -12,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { ThemedText } from '@/components/ThemedText'
 import { Class } from '@/utils/classes'
 import { ClassDownloader } from '@/components/ClassDownloader'
+import { ThemedView } from '@/components/ThemedView'
 
 const ClassDetails = () => {
   const [selectedAnswers, setSelectedAnswers] = useState<
@@ -67,7 +68,10 @@ const ClassDetails = () => {
   return (
     <ScrollView style={styles.container}>
       <SafeAreaView edges={{ top: 'off', bottom: 'maximum' }}>
-        <Text style={styles.title}>{classData.title}</Text>
+        <ThemedView style={styles.titleContainer}>
+          <Text style={styles.title}>{classData.title}</Text>
+          <Text>{classData.isDownloaded ? 'Offline' : ''}</Text>
+        </ThemedView>
 
         <Video
           source={{ uri: classData.video.url }}
@@ -114,10 +118,15 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
+  titleContainer: {
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    alignItems: 'center',
+    // justifyContent: 'space-between',
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 16,
   },
   video: {
     width: '100%',

@@ -19,7 +19,10 @@ export type Class = {
       isCorrect: boolean
     }[]
   }[]
+  isDownloaded?: boolean
 }
+
+export class NetworkError {}
 
 const mockClasses: Class[] = [
   {
@@ -127,7 +130,11 @@ const mockClasses: Class[] = [
   },
 ]
 
-export const fetchClasses = () => {
+export const fetchClasses = (isOffline: boolean) => {
+  if (isOffline) {
+    throw new NetworkError()
+  }
+
   return new Promise<Class[]>((resolve) => {
     setTimeout(() => {
       resolve(mockClasses)
@@ -151,7 +158,7 @@ export const getDownloadedClasses = async () => {
 
       const parsedData = JSON.parse(value)
 
-      return [...prevValue, parsedData]
+      return [...prevValue, { ...parsedData, isDownloaded: true }]
     }, [])
 
     return downloadedClasses
